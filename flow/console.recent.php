@@ -2,32 +2,23 @@
 
 security_check();
 
-if (!isset($_GET['date'])) 
-{
-    header_redirect('/console/add/date/'.date('Y-m-d'));
-}
-
-define('APP_NAME', 'Flow');
-define('PAGE_TITLE', 'Timesheet');
-define('PAGE_SELECTED_SECTION', 'flow');
-define('PAGE_SELECTED_SUB_PAGE', '/console/timesheet');
+define('APP_NAME', 'QR Codes');
+define('PAGE_TITLE', 'QR Scan Logs');
+define('PAGE_SELECTED_SECTION', 'qr-codes');
+define('PAGE_SELECTED_SUB_PAGE', '/console/dashboard');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_slideout.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
-// Get selected date from URL or default to today
-$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-
-// Query hour entries for selected date
-$query = 'SELECT * 
-    FROM hours 
-    WHERE user_id = "'.$_user['id'].'" 
-    AND date = "'.$date.'" ORDER BY id DESC';
+$query = 'SELECT *
+    FROM hours
+    WHERE user_id = "'.$_user['id'].'"
+    ORDER BY date DESC
+    LIMIT 20';
 $result = mysqli_query($connect, $query);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
@@ -40,20 +31,20 @@ foreach($applications_json['applications'] as $application) {
 
 <h1 class="w3-margin-top w3-margin-bottom">
     <img
-        src="https://cdn.brickmmo.com/icons@1.0.0/qr.png"
+        src="https://cdn.brickmmo.com/icons@1.0.0/flow.png"
         height="50"
         style="vertical-align: top"
     />
     Flow
 </h1>
 <p>
-    <a href="/console/dashboard">Dashboard</a> / 
-    Timesheet
+    <a href="/console/dashboard">Flow</a> / 
+    Recent Timesheet Entries
 </p>
 
-<hr>
+<hr> 
 
-<h2><?=date('l F j, Y', strtotime($date))?></h2>
+<h2>Recent Timesheet Entries</h2>
 
 <?php if(mysqli_num_rows($result) == 0): ?>
     
@@ -68,6 +59,7 @@ foreach($applications_json['applications'] as $application) {
         <thead>
             <tr>
                 <th>Project</th>
+                <th>Date</th>
                 <th>Hours</th>
                 <th>Description</th>
                 <th class="bm-table-icon"></th>
@@ -78,6 +70,7 @@ foreach($applications_json['applications'] as $application) {
             <?php while($record = mysqli_fetch_assoc($result)): ?>
                 <tr>
                     <td><?=htmlspecialchars($applications[$record['application_id']])?></td>
+                    <td><?=htmlspecialchars($record['date'])?></td>
                     <td><?=htmlspecialchars($record['hours'])?></td>
                     <td><?=htmlspecialchars($record['description'])?></td>
                     <td>
@@ -86,7 +79,7 @@ foreach($applications_json['applications'] as $application) {
                         </a>
                     </td>
                     <td>
-                        <a href="#" onclick="return confirmModal('Are you sure you want to delete the timesheet entry for <?=$record['date'] ?>?', '/console/timesheet/date/<?=$_GET['date']?>/delete/<?=$record['id'] ?>');">
+                        <a href="#" onclick="return confirmModal('Are you sure you want to delete the timesheet entry for <?=$record['date'] ?>?', '/console/timesheet/delete/<?=$record['id'] ?>');">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                     </td>
@@ -98,7 +91,7 @@ foreach($applications_json['applications'] as $application) {
 <?php endif; ?>
 
 <a
-    href="/console/add/date/<?=$_GET['date']?>"
+    href="/console/add"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> Add Timesheet Entry
@@ -106,6 +99,7 @@ foreach($applications_json['applications'] as $application) {
 
 <?php
 
+// Include footer templates
 include('../templates/main_footer.php');
 include('../templates/debug.php');
 include('../templates/html_footer.php');

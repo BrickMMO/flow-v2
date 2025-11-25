@@ -46,17 +46,37 @@ if ($next_month > 12) {
 // Get events for this month
 $month_start = date('Y-m-01 00:00:00', $first_day);
 $month_end = date('Y-m-t 23:59:59', $first_day);
-
 $month_name = date('F Y', $first_day);
+
+$query = 'SELECT COUNT(*) AS entry_count, COALESCE(SUM(hours), 0) AS hours_count
+    FROM hours
+    WHERE user_id = "'.$_user['id'].'"';
+$result = mysqli_query($connect, $query);
+$record = mysqli_fetch_assoc($result);
+$entry_count = $record['entry_count'];
+$hours_count = $record['hours_count'];
 
 ?>
 
-<main>
-    
-    <div class="w3-center">
-        <h1>Timesheet Calendar</h1>
-        <a href="/console/list">Most Recent Entries</a> | <a href="/console/dashboard">Calendar View</a>
-    </div>
+<h1 class="w3-margin-top w3-margin-bottom">
+    <img
+        src="https://cdn.brickmmo.com/icons@1.0.0/flow.png"
+        height="50"
+        style="vertical-align: top"
+    />
+    Flow
+</h1>
+
+<hr> 
+
+<p>
+    Total Timesheet Entries: <span class="w3-tag w3-blue"><?=$entry_count?></span> | 
+    Total Hours: <span class="w3-tag w3-blue"><?=$hours_count?></span> 
+</p>
+
+<hr> 
+
+<h2>Calendar View</h2>
 
     <hr>
 
