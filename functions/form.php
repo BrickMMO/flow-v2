@@ -41,7 +41,7 @@ function form_select_table($name, $table, $key, $value, $data = array())
     $html .= '</select>';
 
     return $html;
-
+ 
 }
 
 function form_select_array($name, $options, $data = array())

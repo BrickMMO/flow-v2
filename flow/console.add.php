@@ -2,6 +2,11 @@
 
 security_check();
 
+if (!isset($_GET['date'])) 
+{
+    header_redirect('/console/add/date/'.date('Y-m-d'));
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
 

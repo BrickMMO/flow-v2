@@ -21,7 +21,7 @@ function navigation_array($selected = false)
                                     'url' => '/console/dashboard',
                                     'colour' => 'red',
                                 ],[
-                                    'title' => 'Add QR Code',
+                                    'title' => 'Add Timesheet Entry',
                                     'url' => '/console/add',
                                     'colour' => 'red',
                                 ],[
