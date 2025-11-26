@@ -2,20 +2,20 @@
 
 security_check();
 
-define('APP_NAME', 'QR Codes');
-define('PAGE_TITLE', 'QR Scan Logs');
-define('PAGE_SELECTED_SECTION', 'qr-codes');
-define('PAGE_SELECTED_SUB_PAGE', '/console/dashboard');
+define('APP_NAME', 'Flow');
+define('PAGE_TITLE', 'Recent Timesheet Entries');
+define('PAGE_SELECTED_SECTION', 'flow');
+define('PAGE_SELECTED_SUB_PAGE', '/console/recent');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
-include('../templates/nav_slideout.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
+
 include('../templates/message.php');
 
 $query = 'SELECT *
-    FROM hours
+    FROM entries
     WHERE user_id = "'.$_user['id'].'"
     ORDER BY date DESC
     LIMIT 20';
@@ -37,8 +37,9 @@ foreach($applications_json['applications'] as $application) {
     />
     Flow
 </h1>
+
 <p>
-    <a href="/console/dashboard">Flow</a> / 
+    <a href="/console/calendar">Flow</a> / 
     Recent Timesheet Entries
 </p>
 
@@ -89,6 +90,13 @@ foreach($applications_json['applications'] as $application) {
     </table>
 
 <?php endif; ?>
+
+<a
+    href="/console/canlendar"
+    class="w3-button w3-white w3-border"
+>
+    <i class="fa-solid fa-pen-to-square fa-padding-right"></i> View Timesheet Calendar
+</a>
 
 <a
     href="/console/add"

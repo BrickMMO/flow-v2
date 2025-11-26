@@ -46,12 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 define('APP_NAME', 'Flow');
 define('PAGE_TITLE', 'Add Timesheet Entry');
-define('PAGE_SELECTED_SECTION', 'timesheets');
+define('PAGE_SELECTED_SECTION', 'flow');
 define('PAGE_SELECTED_SUB_PAGE', '/console/add');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
-include('../templates/nav_slideout.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
 
@@ -59,7 +58,7 @@ include('../templates/message.php');
 
 $query = 'SELECT user_id,
     SUM(hours) AS hours_total
-    FROM hours
+    FROM entries
     GROUP BY user_id
     ORDER BY hours_total DESC';
 $result = mysqli_query($connect, $query);
@@ -80,9 +79,10 @@ foreach($applications_json['applications'] as $application) {
     />
     Flow
 </h1>
+
 <p>
-    <a href="/console/dashboard">Flow</a> / 
-    <a href="/console/timesheet/date/<?=$_GET['date']?>">Flow</a> / 
+    <a href="/console/calendar">Flow</a> / 
+    <a href="/console/timesheet/date/<?=$_GET['date']?>">Timesheet</a> / 
     Add Timesheet Enry
 </p>
 

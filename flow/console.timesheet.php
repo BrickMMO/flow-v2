@@ -14,20 +14,17 @@ define('PAGE_SELECTED_SUB_PAGE', '/console/timesheet');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
-include('../templates/nav_slideout.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
 
 include('../templates/message.php');
 
-// Get selected date from URL or default to today
-$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
 // Query hour entries for selected date
 $query = 'SELECT * 
-    FROM hours 
+    FROM entries 
     WHERE user_id = "'.$_user['id'].'" 
-    AND date = "'.$date.'" ORDER BY id DESC';
+    AND date = "'.$_GET['date'].'" ORDER BY id DESC';
 $result = mysqli_query($connect, $query);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
@@ -47,19 +44,19 @@ foreach($applications_json['applications'] as $application) {
     Flow
 </h1>
 <p>
-    <a href="/console/dashboard">Dashboard</a> / 
+    <a href="/console/calendar">Flow</a> / 
     Timesheet
 </p>
 
 <hr>
 
-<h2><?=date('l F j, Y', strtotime($date))?></h2>
+<h2><?=date('l F j, Y', strtotime($_GET['date']))?></h2>
 
 <?php if(mysqli_num_rows($result) == 0): ?>
     
     <div class="w3-panel w3-light-grey">
         <h3 class="w3-margin-top"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> No Results Found</h3>
-        <p>There are no timesheet entries for <strong><?=date('l F j, Y', strtotime($date))?></strong>.</p>
+        <p>There are no timesheet entries for <strong><?=date('l F j, Y', strtotime($_GET['date']))?></strong>.</p>
     </div>
 
 <?php else: ?>

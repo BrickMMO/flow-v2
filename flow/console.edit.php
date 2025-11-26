@@ -7,7 +7,7 @@ if(
     !is_numeric($_GET['key']))
 {
     message_set('Tag Error', 'There was an error with the provided QR code.');
-    header_redirect('/console/dashboard');
+    header_redirect('/console/calendar');
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -39,19 +39,20 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 define('APP_NAME', 'Flow');
 define('PAGE_TITLE', 'Edit Timesheet Entry');
-define('PAGE_SELECTED_SECTION', 'timesheets');
-define('PAGE_SELECTED_SUB_PAGE', '/console/dashboard');
+define('PAGE_SELECTED_SECTION', 'flow');
+define('PAGE_SELECTED_SUB_PAGE', '/console/edit');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
-include('../templates/nav_slideout.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
 
 include('../templates/message.php');
 
-
-$query = 'SELECT * FROM hours WHERE id = "'.$_GET['key'].'" LIMIT 1';
+$query = 'SELECT * 
+    FROM entries 
+    WHERE id = "'.$_GET['key'].'" 
+    LIMIT 1';
 $result = mysqli_query($connect, $query);
 $entry = mysqli_fetch_assoc($result);
 
@@ -63,7 +64,6 @@ foreach($applications_json['applications'] as $application) {
 
 ?>
 
-
 <h1 class="w3-margin-top w3-margin-bottom">
     <img
         src="https://cdn.brickmmo.com/icons@1.0.0/flow.png"
@@ -72,9 +72,10 @@ foreach($applications_json['applications'] as $application) {
     />
     Flow
 </h1>
+
 <p>
-    <a href="/console/dashboard">Flow</a> / 
-    <a href="/console/timesheet/date/<?=htmlspecialchars($entry['date'])?>">Flow</a> / 
+    <a href="/console/calendar">Flow</a> / 
+    <a href="/console/timesheet/date/<?=htmlspecialchars($entry['date'])?>">Timesheet</a> / 
     Edit Timesheet Entry
 </p>
 
