@@ -5,7 +5,7 @@ security_check();
 define('APP_NAME', 'Flow');
 define('PAGE_TITLE', 'Calendar');
 define('PAGE_SELECTED_SECTION', 'flow');
-define('PAGE_SELECTED_SUB_PAGE', '/console/calendar');
+define('PAGE_SELECTED_SUB_PAGE', '/console/dashboard');
 
 include('../templates/html_header.php');
 include('../templates/nav_header.php');
@@ -81,8 +81,8 @@ $hours_count = $record['hours_count'];
 <hr>
 
 <!-- Calendar Navigation -->
-<div class="w3-bar w3-margin-bottom" style="display: flex; align-items: center; gap: 10px;">
-    <a href="/console/calendar/month/<?=$prev_month?>/year/<?=$prev_year?>" class="w3-button w3-white w3-border">
+<div class="w3-bar w3-margin-bottom" style="display: flex; align-items: center;">
+    <a href="/console/dashboard/month/<?=$prev_month?>/year/<?=$prev_year?>" class="w3-button w3-white w3-border">
         <i class="fa-solid fa-chevron-left"></i> Previous
     </a>
     
@@ -90,7 +90,7 @@ $hours_count = $record['hours_count'];
         <h2 style="margin: 0;"><?=$month_name?></h2>
     </div>
     
-    <a href="/console/calendar/month/<?=$next_month?>/year/<?=$next_year?>" class="w3-button w3-white w3-border">
+    <a href="/console/dashboard/month/<?=$next_month?>/year/<?=$next_year?>" class="w3-button w3-white w3-border">
         Next <i class="fa-solid fa-chevron-right"></i>
     </a>
 </div>

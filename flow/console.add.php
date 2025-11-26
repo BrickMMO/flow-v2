@@ -81,7 +81,7 @@ foreach($applications_json['applications'] as $application) {
 </h1>
 
 <p>
-    <a href="/console/calendar">Flow</a> / 
+    <a href="/console/dashboard">Flow</a> / 
     <a href="/console/timesheet/date/<?=$_GET['date']?>">Timesheet</a> / 
     Add Timesheet Enry
 </p>

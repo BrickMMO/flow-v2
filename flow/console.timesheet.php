@@ -44,7 +44,7 @@ foreach($applications_json['applications'] as $application) {
     Flow
 </h1>
 <p>
-    <a href="/console/calendar">Flow</a> / 
+    <a href="/console/dashboard">Flow</a> / 
     Timesheet
 </p>
 

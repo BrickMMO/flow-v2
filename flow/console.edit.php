@@ -7,7 +7,7 @@ if(
     !is_numeric($_GET['key']))
 {
     message_set('Tag Error', 'There was an error with the provided QR code.');
-    header_redirect('/console/calendar');
+    header_redirect('/console/dashboard');
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -74,7 +74,7 @@ foreach($applications_json['applications'] as $application) {
 </h1>
 
 <p>
-    <a href="/console/calendar">Flow</a> / 
+    <a href="/console/dashboard">Flow</a> / 
     <a href="/console/timesheet/date/<?=htmlspecialchars($entry['date'])?>">Timesheet</a> / 
     Edit Timesheet Entry
 </p>

@@ -13,12 +13,12 @@ function navigation_array($selected = false)
                     'pages' => [
                         [
                             'icon' => 'bm-flow',
-                            'url' => '/console/calendar',
+                            'url' => '/console/dashboard',
                             'title' => 'Flow',
                             'sub-pages' => [
                                 [
                                     'title' => 'Calendar',
-                                    'url' => '/console/calendar',
+                                    'url' => '/console/dashboard',
                                     'colour' => 'red',
                                 ],[
                                     'title' => 'Recent Timesheet Entries',
