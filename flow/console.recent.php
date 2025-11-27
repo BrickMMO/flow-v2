@@ -51,7 +51,7 @@ foreach($applications_json['applications'] as $application) {
     
     <div class="w3-panel w3-light-grey">
         <h3 class="w3-margin-top"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> No Results Found</h3>
-        <p>There are no timesheet entries for <strong><?=date('l F j, Y', strtotime($date))?></strong>.</p>
+        <p>There are no timesheet entries for <span class="w3-bold"><?=date('l F j, Y', strtotime($date))?></span>.</p>
     </div>
 
 <?php else: ?>

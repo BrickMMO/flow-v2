@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 
     // Save QR code details to the database
-    $query = 'INSERT INTO hours (
+    $query = 'INSERT INTO entries (
             date, 
             hours, 
             description,

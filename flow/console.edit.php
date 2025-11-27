@@ -22,7 +22,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
         header_redirect('/console/add');
     }
     
-    $query = 'UPDATE hours SET
+    $query = 'UPDATE entries SET
         date = "'.addslashes($_POST['date']).'",
         hours = "'.addslashes($_POST['hours']).'",
         description = "'.addslashes($_POST['description']).'",

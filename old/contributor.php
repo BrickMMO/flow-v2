@@ -29,7 +29,7 @@ try {
             MIN(work_date) as first_entry,
             MAX(work_date) as last_entry,
             AVG(duration) as avg_hours_per_entry
-        FROM hours 
+        FROM entries 
         WHERE user_id = ?
     ");
     $stats_stmt->execute([$user['id']]);

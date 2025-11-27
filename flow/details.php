@@ -41,10 +41,12 @@ $user = $user['user'];
 <div>
 
     <img src="<?=$user['avatar']?>" alt="" class="w3-margin-bottom" style="width:150px">
-    <p><strong>Name:</strong> <?=$user['first']?> <?=$user['last']?></p>
+    <p>Name: <span class="w3-bold"><?=$user['first']?> <?=$user['last']?></span></p>
     <p>
-        <strong>GitHub URL:</strong> 
-        <a href="https://github.com/<?=$user['github_username']?>">https://github.com/<?=$user['github_username']?></a>
+        GitHub URL:
+        <a href="https://github.com/<?=$user['github_username']?>">
+            <span class="w3-bold">https://github.com/<?=$user['github_username']?></span>
+        </a>
     </p>
 
 </div>
