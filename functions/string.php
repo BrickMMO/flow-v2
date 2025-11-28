@@ -137,7 +137,7 @@ function string_url_local($url)
     {
         // Do not convert for GitHub hosted assets
         if(string_url_ip($url) == '185.199.108.153') return $url;
-        $url = str_replace('brickmmo.com', 'local.brickmmo.com', $url);
+        $url = str_replace('brickmmo.com', 'local.brickmmo.com:33', $url);
     }
 
     if(ENV_HTTPS == false)
