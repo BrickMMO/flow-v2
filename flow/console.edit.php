@@ -74,8 +74,8 @@ foreach($applications_json['applications'] as $application) {
 </h1>
 
 <p>
-    <a href="/console/dashboard">Flow</a> / 
-    <a href="/console/timesheet/date/<?=htmlspecialchars($entry['date'])?>">Timesheet</a> / 
+    <a href="<?=ENV_DOMAIN?>/console/dashboard">Flow</a> / 
+    <a href="<?=ENV_DOMAIN?>/console/timesheet/date/<?=htmlspecialchars($entry['date'])?>">Timesheet</a> / 
     Edit Timesheet Entry
 </p>
 

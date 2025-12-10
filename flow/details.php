@@ -87,7 +87,7 @@ $user = $user['user'];
 
 <hr>
 
-<a href="/list" class="w3-button w3-white w3-border">
+<a href="<?=ENV_DOMAIN?>/list" class="w3-button w3-white w3-border">
     <i class="fa-solid fa-caret-left fa-padding-right"></i>
     Back to Contributions List
 </a>

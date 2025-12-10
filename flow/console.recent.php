@@ -39,7 +39,7 @@ foreach($applications_json['applications'] as $application) {
 </h1>
 
 <p>
-    <a href="/console/dashboard">Flow</a> / 
+    <a href="<?=ENV_DOMAIN?>/console/dashboard">Flow</a> / 
     Recent Timesheet Entries
 </p>
 
@@ -75,7 +75,7 @@ foreach($applications_json['applications'] as $application) {
                     <td><?=htmlspecialchars($record['hours'])?></td>
                     <td><?=htmlspecialchars($record['description'])?></td>
                     <td>
-                        <a href="/console/edit/<?=$record['id'] ?>">
+                        <a href="<?=ENV_DOMAIN?>/console/edit/<?=$record['id'] ?>">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </td>
@@ -92,14 +92,14 @@ foreach($applications_json['applications'] as $application) {
 <?php endif; ?>
 
 <a
-    href="/console/canlendar"
+    href="<?=ENV_DOMAIN?>/console/canlendar"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> View Timesheet Calendar
 </a>
 
 <a
-    href="/console/add"
+    href="<?=ENV_DOMAIN?>/console/add"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> Add Timesheet Entry

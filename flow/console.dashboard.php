@@ -82,7 +82,7 @@ $hours_count = $record['hours_count'];
 
 <!-- Calendar Navigation -->
 <div class="w3-bar w3-margin-bottom" style="display: flex; align-items: center;">
-    <a href="/console/dashboard/month/<?=$prev_month?>/year/<?=$prev_year?>" class="w3-button w3-white w3-border">
+    <a href="<?=ENV_DOMAIN?>/console/dashboard/month/<?=$prev_month?>/year/<?=$prev_year?>" class="w3-button w3-white w3-border">
         <i class="fa-solid fa-chevron-left"></i> Previous
     </a>
     
@@ -90,7 +90,7 @@ $hours_count = $record['hours_count'];
         <h2 style="margin: 0;"><?=$month_name?></h2>
     </div>
     
-    <a href="/console/dashboard/month/<?=$next_month?>/year/<?=$next_year?>" class="w3-button w3-white w3-border">
+    <a href="<?=ENV_DOMAIN?>/console/dashboard/month/<?=$next_month?>/year/<?=$next_year?>" class="w3-button w3-white w3-border">
         Next <i class="fa-solid fa-chevron-right"></i>
     </a>
 </div>
@@ -147,7 +147,7 @@ $hours_count = $record['hours_count'];
                                 $record = mysqli_fetch_assoc($result);
 
                                 echo '<div class="w3-center w3-xxlarge">
-                                        <a href="/console/timesheet/date/'.date('Y-m-d', mktime(0, 0, 0, $month, $day_counter, $year)).'">
+                                        <a href="'.ENV_DOMAIN.'/console/timesheet/date/'.date('Y-m-d', mktime(0, 0, 0, $month, $day_counter, $year)).'">
                                             '.$record['hours'].'
                                         </a>
                                     </div>';
@@ -170,14 +170,14 @@ $hours_count = $record['hours_count'];
 <hr>
 
 <a
-    href="/console/recent"
+    href="<?=ENV_DOMAIN?>/console/recent"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> View Recent Timesheet Entries
 </a>
 
 <a
-    href="/console/add"
+    href="<?=ENV_DOMAIN?>/console/add"
     class="w3-button w3-white w3-border"
 >
     <i class="fa-solid fa-pen-to-square fa-padding-right"></i> Add Timesheet Entry
