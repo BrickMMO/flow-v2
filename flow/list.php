@@ -20,14 +20,22 @@ $usder_count = mysqli_num_rows($result);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
 $applications = array();
-foreach($applications_json['applications'] as $application) {
+
+foreach($applications_json['applications'] as $application) 
+{
+
     $applications[$application['id']] = $application;
+
 }
 
 $users_json = fetch_json('https://sso.brickmmo.com/api/users');
 $users = array();
-foreach($users_json['users'] as $user) {
+
+foreach($users_json['users'] as $user) 
+{
+
     $users[$user['id']] = $user;
+
 }
 
 ?>
@@ -98,8 +106,6 @@ foreach($users_json['users'] as $user) {
     <?php endwhile; ?>
 
 </div>
-
-
 
 <?php
 

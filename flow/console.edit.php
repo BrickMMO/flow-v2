@@ -6,8 +6,10 @@ if(
     !isset($_GET['key']) || 
     !is_numeric($_GET['key']))
 {
+
     message_set('Tag Error', 'There was an error with the provided QR code.');
     header_redirect('/console/dashboard');
+
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -18,8 +20,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
         !validate_blank($_POST['application_id']) || 
         !validate_blank($_POST['date']))
     {
+
         message_set('Timesheet Entry Error', 'There was an error with the timesheet entry.', 'red');
         header_redirect('/console/add');
+
     }
     
     $query = 'UPDATE entries SET
@@ -46,7 +50,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 $query = 'SELECT * 
@@ -58,8 +61,12 @@ $entry = mysqli_fetch_assoc($result);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
 $applications = array();
-foreach($applications_json['applications'] as $application) {
+
+foreach($applications_json['applications'] as $application) 
+{
+    
     $applications[$application['id']] = $application['name'];
+
 }
 
 ?>
@@ -177,6 +184,5 @@ foreach($applications_json['applications'] as $application) {
 <?php
 
 include('../templates/main_footer.php');
+include('../templates/debug.php');
 include('../templates/html_footer.php');
-
-?>

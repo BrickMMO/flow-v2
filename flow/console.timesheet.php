@@ -4,7 +4,9 @@ security_check();
 
 if (!isset($_GET['date'])) 
 {
+
     header_redirect('/console/add/date/'.date('Y-m-d'));
+
 }
 
 define('APP_NAME', 'Flow');
@@ -16,9 +18,7 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
-
 
 // Query hour entries for selected date
 $query = 'SELECT * 
@@ -29,8 +29,12 @@ $result = mysqli_query($connect, $query);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
 $applications = array();
-foreach($applications_json['applications'] as $application) {
+
+foreach($applications_json['applications'] as $application) 
+{
+
     $applications[$application['id']] = $application['name'];
+
 }
 
 ?>
@@ -43,6 +47,7 @@ foreach($applications_json['applications'] as $application) {
     />
     Flow
 </h1>
+
 <p>
     <a href="<?=ENV_DOMAIN?>/console/dashboard">Flow</a> / 
     Timesheet

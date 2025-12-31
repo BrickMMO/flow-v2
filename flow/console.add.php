@@ -4,7 +4,9 @@ security_check();
 
 if (!isset($_GET['date'])) 
 {
+
     header_redirect('/console/add/date/'.date('Y-m-d'));
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
@@ -16,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         !validate_blank($_POST['application_id']) || 
         !validate_blank($_POST['date']))
     {
+        
         message_set('Timesheet Entry Error', 'There was an error with the timesheet entry.', 'red');
         header_redirect('/console/add');
+
     }
 
     // Save QR code details to the database
@@ -42,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     message_set('Timesheet Entry Success', 'Timesheet entry has been successfully created.');
     header_redirect('/console/timesheet/date/'.$_POST['date']);
+
 }
 
 define('APP_NAME', 'Flow');
@@ -53,7 +58,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 $query = 'SELECT user_id,
@@ -65,8 +69,12 @@ $result = mysqli_query($connect, $query);
 
 $applications_json = fetch_json('https://applications.brickmmo.com/api/applications/timesheets/true');
 $applications = array();
-foreach($applications_json['applications'] as $application) {
+
+foreach($applications_json['applications'] as $application) 
+{
+
     $applications[$application['id']] = $application['name'];
+
 }
 
 ?>
@@ -185,6 +193,5 @@ foreach($applications_json['applications'] as $application) {
 <?php
 
 include('../templates/main_footer.php');
+include('../templates/debug.php');
 include('../templates/html_footer.php');
-
-?>

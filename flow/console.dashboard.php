@@ -11,7 +11,6 @@ include('../templates/html_header.php');
 include('../templates/nav_header.php');
 include('../templates/nav_sidebar.php');
 include('../templates/main_header.php');
-
 include('../templates/message.php');
 
 // Get month and year from URL or default to current
@@ -80,7 +79,6 @@ $hours_count = $record['hours_count'];
 
 <hr>
 
-<!-- Calendar Navigation -->
 <div class="w3-bar w3-margin-bottom" style="display: flex; align-items: center;">
     <a href="<?=ENV_DOMAIN?>/console/dashboard/month/<?=$prev_month?>/year/<?=$prev_year?>" class="w3-button w3-white w3-border">
         <i class="fa-solid fa-chevron-left"></i> Previous
